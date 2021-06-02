@@ -1,0 +1,7 @@
+data
+.env
+node_modules
+package-lock.json
+.vscode
+ormconfig.json
+dist
