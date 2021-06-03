@@ -2,9 +2,11 @@ import {
     Column,
     CreateDateColumn,
     Entity,
+    OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from "typeorm";
+import { Project } from "./Project";
 
 type UserRole = "admin" | "user";
 
@@ -27,6 +29,9 @@ export class User {
 
     @Column()
     password!: string;
+
+    @OneToMany(() => Project, project => project.user)
+    projects!: Project[]
 
     @CreateDateColumn()
     createdAt?: Date;

@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import { userRoutes } from "./modules/user/user.routes";
+import { projectRoutes } from "./modules/project/project.routes";
 
 class App {
     public app: express.Application;
@@ -19,6 +20,7 @@ class App {
 
     private initRoutes(): void {
         this.app.use("/api/users", userRoutes);
+        this.app.use("/api/projects", projectRoutes);
     }
 }
 
