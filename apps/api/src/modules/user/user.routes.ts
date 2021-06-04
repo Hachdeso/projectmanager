@@ -1,5 +1,6 @@
 import express from "express";
 import { isAdmin } from "../../middlewares/authentication/isAdmin";
+import { isUser } from "../../middlewares/authentication/isUser";
 import { UserController } from "./user.controller";
 
 class UserRoutes {
@@ -15,7 +16,7 @@ class UserRoutes {
     private initRoutes(): void {
         this.router.post("/authenticate", this.userController.authenticate);
         this.router.post("/", this.userController.createUser);
-        this.router.delete("/", isAdmin, this.userController.deleteUser);
+        this.router.delete("/:userId", isUser, this.userController.deleteUser);
     }
 }
 

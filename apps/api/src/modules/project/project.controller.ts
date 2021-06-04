@@ -4,13 +4,16 @@ import { Project } from "../../entity/Project";
 
 export class ProjectController {
     public async createProject(req: Request, res: Response) {
-        const project = new Project();
+        const project: any = new Project();
         project.name = req.body.name;
         project.user = res.locals.user;
         project.archived = false;
         await getRepository(Project)
             .save(project)
             .catch((error) => res.status(400).json(error));
+
+        delete project["__user__"];
+        delete project["__has_user__"];
         return res.status(200).json(project);
     }
 

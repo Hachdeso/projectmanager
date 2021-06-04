@@ -5,7 +5,6 @@ import { getRepository, Repository } from "typeorm";
 import jwt from "jsonwebtoken";
 import { JWT_DURATION, JWT_KEY } from "../../config";
 import { formatUser } from "./user.services";
-import { format } from "path/posix";
 
 export class UserController {
     public async authenticate(req: Request, res: Response) {
@@ -45,11 +44,11 @@ export class UserController {
     }
 
     public async deleteUser(req: Request, res: Response) {
-        const user = await getRepository(User).findOne(req.body.userId);
+        const user = await getRepository(User).findOne(req.params.userId);
         if (!user) return res.sendStatus(404);
-        await getRepository(User)
-            .remove(user)
-            .catch((error) => res.status(400).json(error));
+        if (res.locals.user.role !== "admin" && res.locals.user.id !== user.id)
+            return res.sendStatus(403);
+        await getRepository(User).remove(user);
         res.sendStatus(200);
     }
 }
