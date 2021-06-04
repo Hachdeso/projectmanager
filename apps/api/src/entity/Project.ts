@@ -3,9 +3,11 @@ import {
     CreateDateColumn,
     Entity,
     ManyToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from "typeorm";
+import { Session } from "./Session";
 import { User } from "./User";
 
 @Entity()
@@ -14,9 +16,12 @@ export class Project {
     id!: number;
 
     @ManyToOne(() => User, (user) => user.projects, {
-        cascade: ["remove"],
+        onDelete: "CASCADE",
     })
     user!: Promise<User>;
+
+    @OneToMany(() => Session, (session) => session.project)
+    sessions!: Promise<Session[]>;
 
     @Column()
     name!: string;
