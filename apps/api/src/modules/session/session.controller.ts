@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
+import { DateTime } from "luxon";
 import { getRepository } from "typeorm";
 import { Project } from "../../entity/Project";
 import { Session } from "../../entity/Session";
-import { formatSession } from "./session.services";
+import { formatSession, orderSessionsByMonth } from "./session.services";
 
 export class SessionController {
     public async startSession(req: Request, res: Response) {
@@ -82,6 +83,10 @@ export class SessionController {
             },
         });
 
-        return res.status(200).json(sessions);
+        const dt = DateTime.local(2021, 6, 5);
+
+        console.log(dt.setLocale("fr").weekdayLong);
+
+        return res.status(200).json({ sessions: orderSessionsByMonth(sessions) });
     }
 }
