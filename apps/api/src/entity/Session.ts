@@ -7,6 +7,7 @@ import {
     UpdateDateColumn,
 } from "typeorm";
 import { Project } from "./Project";
+import { User } from "./User";
 
 @Entity()
 export class Session {
@@ -18,11 +19,27 @@ export class Session {
     })
     project!: Promise<Project>;
 
+    @ManyToOne(() => User, (user) => user.sessions, {
+        onDelete: "CASCADE",
+    })
+    user!: Promise<User>;
+
     @Column()
     date!: string;
 
+    @Column({
+        default: 0,
+    })
+    workTime!: number;
+
+    @Column({
+        nullable: true,
+        type: "bigint",
+    })
+    startTimeStamp!: number | null;
+
     @Column()
-    duration!: number;
+    active!: boolean;
 
     @CreateDateColumn()
     createdAt!: Date;

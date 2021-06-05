@@ -7,6 +7,7 @@ import {
     UpdateDateColumn,
 } from "typeorm";
 import { Project } from "./Project";
+import { Session } from "./Session";
 
 type UserRole = "admin" | "user";
 
@@ -30,8 +31,11 @@ export class User {
     @Column()
     password!: string;
 
-    @OneToMany(() => Project, project => project.user)
-    projects!: Project[]
+    @OneToMany(() => Project, (project) => project.user)
+    projects!: Promise<Project[]>;
+
+    @OneToMany(() => Session, (session) => session.user)
+    sessions!: Promise<Session[]>;
 
     @CreateDateColumn()
     createdAt?: Date;

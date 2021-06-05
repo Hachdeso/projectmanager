@@ -13,18 +13,10 @@ class SessionRoutes {
     }
 
     private initRoutes() {
-        this.router.post("/", isUser, this.controller.createSession);
-        this.router.get(
-            "/get/active",
-            isUser,
-            this.controller.getActiveSessions
-        );
-        this.router.get(
-            "/get/project/:projectId",
-            isUser,
-            this.controller.getProjectsSessions
-        );
-        this.router.post("/:sessionId", isUser, this.controller.updateSession);
+        this.router.post("/project/:projectId/start", isUser, this.controller.startSession);
+        this.router.post("/:sessionId/stop", isUser, this.controller.stopSession);
+        this.router.get("/get/active", isUser, this.controller.getActiveSessions);
+        this.router.get("/get/project/:projectId", isUser, this.controller.getProjectsSessions);
     }
 }
 
