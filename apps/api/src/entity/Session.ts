@@ -21,6 +21,9 @@ export class Session {
     @Column()
     date!: string;
 
+    @Column()
+    duration!: number;
+
     @CreateDateColumn()
     createdAt!: Date;
 
