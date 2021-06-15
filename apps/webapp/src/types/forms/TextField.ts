@@ -1,4 +1,6 @@
-export type TextFieldState = "inactive" | "focused" | "active" | "error";
+export interface TextFieldConstraints {
+    required?: boolean;
+}
 
 export interface TextFieldType {
     form?: string;
@@ -6,6 +8,7 @@ export interface TextFieldType {
     value: string;
     errorTxt?: string;
     helperTxt?: string;
-    state: TextFieldState;
     label: string;
+    constraints?: TextFieldConstraints;
+    isFocus: boolean;
 }

@@ -1,0 +1,28 @@
+$primaryColor: #1b5bff;
+$hoverColor: #dfe8fd;
+
+.textButton {
+    background: none;
+    border: none;
+
+    .wrapper {
+        height: 36px;
+        display: flex;
+        align-items: center;
+        min-width: 64px;
+        padding: 0 8px;
+        border-radius: 4px;
+
+        .label {
+            color: $primaryColor;
+            font-family: "Roboto Condensed", sans-serif;
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+        .wrapper {
+            background-color: $hoverColor;
+        }
+    }
+}
