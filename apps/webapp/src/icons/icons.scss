@@ -1,0 +1,15 @@
+.iconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+
+    &_clickable {
+        &:hover {
+            background-color: grey;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+    }
+}

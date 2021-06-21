@@ -1,16 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { User } from "../../types/entity/User";
 
 interface UserInformations {
     token: string;
-    email: string;
+    user: User;
 }
 
 interface UserState {
-    isLoggedIn: boolean;
+    isAuth: boolean;
     userInformations?: UserInformations;
 }
 
-const initialState = { isLoggedIn: false } as UserState;
+const initialState = { isAuth: false } as UserState;
 
 const userSlice = createSlice({
     name: "user",

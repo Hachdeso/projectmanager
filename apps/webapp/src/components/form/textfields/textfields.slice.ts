@@ -11,7 +11,7 @@ const textFormsSlice = createSlice({
             state.push(action.payload);
         },
         removeTextField(state, action: PayloadAction<string>) {
-            state.slice(
+            state.splice(
                 state.findIndex((tf) => tf.name === action.payload),
                 1
             );

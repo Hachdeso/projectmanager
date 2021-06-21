@@ -9,11 +9,10 @@ import { useMouseEvents } from "../../../../hooks/useMouseEvent";
 interface ButtonProps {
     name: string;
     label: string;
-    form?: string;
     onClick: Function;
 }
 
-const Button: React.FC<ButtonProps> = ({ name, label, form, onClick }) => {
+const Button: React.FC<ButtonProps> = ({ name, label, onClick }) => {
     const [loaded, setLoaded] = useState(false);
     const button = useAppSelector((state) => {
         return state.forms.buttons.find((b) => b.name === name);
@@ -40,7 +39,6 @@ const Button: React.FC<ButtonProps> = ({ name, label, form, onClick }) => {
                 name,
                 label,
                 state: "active",
-                form,
             };
             dispatch(addButton(button));
             setLoaded(true);

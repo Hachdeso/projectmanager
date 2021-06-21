@@ -1,5 +1,10 @@
 export interface TextFieldConstraints {
     required?: boolean;
+    email?: boolean;
+    identical?: {
+        to: string;
+        msg: string;
+    };
 }
 
 export interface TextFieldType {

@@ -16,7 +16,7 @@ const ProgressBar: React.FC = () => {
         show: {
             height: 4,
             transition: {
-                duration: 0.1,
+                duration: 0,
             },
         },
     };

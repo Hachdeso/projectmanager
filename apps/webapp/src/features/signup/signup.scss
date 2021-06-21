@@ -1,3 +1,15 @@
 .signup {
     background-color: white;
+
+    .textField {
+        width: 100%;
+    }
+
+    .buttonWrapper {
+        width: 100%;
+        display: flex;
+        .button {
+            margin-left: auto;
+        }
+    }
 }

@@ -22,11 +22,24 @@ export function getClassesForTextField(tf: TextFieldType) {
 }
 
 export function validateTextField(tf: TextFieldType) {
-    console.log("validateTF");
     let errorTxt = "";
+    const constraints = tf.constraints;
 
-    if (tf.constraints?.required && !tf.value) {
+    if (!constraints) return;
+
+    if (constraints.required && !tf.value) {
         errorTxt = "Ce champ est obligatoire";
+    } else if (
+        constraints.email &&
+        // eslint-disable-next-line
+        !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(tf.value)
+    ) {
+        errorTxt = "Adresse mail invalide";
+    } else if (
+        constraints.identical &&
+        tf.value !== getTextFieldByName(constraints.identical.to)?.value
+    ) {
+        errorTxt = constraints.identical.msg;
     }
 
     store.dispatch(editTextFieldErrorTxt({ name: tf.name, errorTxt }));

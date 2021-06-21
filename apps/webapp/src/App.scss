@@ -1,9 +1,9 @@
 .App {
     text-align: center;
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    user-select: none;
 }
 
 h1 {
@@ -13,6 +13,7 @@ h1 {
     color: black;
     margin: 16px 0;
     padding: 0;
+    user-select: text;
 }
 
 h2 {
@@ -22,11 +23,12 @@ h2 {
     color: black;
     margin: 0;
     padding: 0;
+    user-select: text;
 }
 
 .content {
     padding: 16px;
     box-sizing: border-box;
     min-height: 100vh;
-    width: 100vh;
+    max-width: 100vh;
 }

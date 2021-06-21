@@ -94,25 +94,27 @@ const TextField: React.FC<TextFieldProps> = ({
     if (!textField) return null;
 
     return (
-        <div
-            className={getClassesForTextField(textField)}
-            onClick={() => textFieldRef.current?.focus()}
-        >
-            <span className={`label ${variant === "active" ? "label_active" : ""}`}>
-                {textField.label}
-            </span>
-            <input
-                type={type}
-                ref={textFieldRef}
-                value={textField.value}
-                onFocus={() =>
-                    dispatch(editTextFieldIsFocus({ name: textField.name, isFocus: true }))
-                }
-                onBlur={() =>
-                    dispatch(editTextFieldIsFocus({ name: textField.name, isFocus: false }))
-                }
-                onChange={(e) => dispatch(editTextFieldValue({ name, value: e.target.value }))}
-            />
+        <div className="textFieldWrapper">
+            <div
+                className={getClassesForTextField(textField)}
+                onClick={() => textFieldRef.current?.focus()}
+            >
+                <span className={`label ${variant === "active" ? "label_active" : ""}`}>
+                    {textField.label}
+                </span>
+                <input
+                    type={type}
+                    ref={textFieldRef}
+                    value={textField.value}
+                    onFocus={() =>
+                        dispatch(editTextFieldIsFocus({ name: textField.name, isFocus: true }))
+                    }
+                    onBlur={() =>
+                        dispatch(editTextFieldIsFocus({ name: textField.name, isFocus: false }))
+                    }
+                    onChange={(e) => dispatch(editTextFieldValue({ name, value: e.target.value }))}
+                />
+            </div>
             <motion.span animate={infoTxtVariant} variants={infoTxtVariants} className={"infoTxt"}>
                 {textField.errorTxt ? textField.errorTxt : textField.helperTxt}
             </motion.span>

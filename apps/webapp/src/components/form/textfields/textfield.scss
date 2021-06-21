@@ -3,44 +3,77 @@ $grey: #999999;
 $errorColor: #b00020;
 $font: "Roboto", sans-serif;
 
-.textField {
-    box-sizing: border-box;
-    width: 200px;
-    height: 48px;
-    border: 1px solid;
-    padding: 8px 16px;
-    display: flex;
+.textFieldWrapper {
     position: relative;
-    border-radius: 4px;
-    background-color: white;
-    border-color: $grey;
-    margin-bottom: 32px;
+    .textField {
+        position: relative;
 
-    .label {
-        position: absolute;
-        top: 14px;
-        left: 12px;
-        font-family: $font;
-        padding: 0 4px;
+        box-sizing: border-box;
+        width: 200px;
+        height: 48px;
+        border: 1px solid;
+        padding: 8px 16px;
+        display: flex;
+        border-radius: 4px;
         background-color: white;
-        color: $grey;
-        transition: 0.1s;
+        border-color: $grey;
+        margin-bottom: 32px;
+        z-index: 1;
 
-        &_active {
-            top: -7px;
-            font-size: 12px;
+        .label {
+            position: absolute;
+            top: 14px;
+            left: 12px;
+            font-family: $font;
+            padding: 0 4px;
+            background-color: white;
+            color: $grey;
+            transition: 0.1s;
+
+            &_active {
+                top: -7px;
+                font-size: 12px;
+            }
+        }
+
+        input {
+            border: none;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            width: 100%;
+            outline: none;
+            font-family: $font;
+            font-size: 16px;
+        }
+
+        &:hover {
+            border-color: black;
+            cursor: text;
+        }
+
+        &_focused,
+        &_focused:hover {
+            border-color: $primaryColor;
+            box-shadow: 0px 0px 0px 1px $primaryColor;
+
+            .label {
+                color: $primaryColor;
+            }
+        }
+
+        &_error,
+        &_error:hover {
+            border-color: $errorColor;
+
+            .label {
+                color: $errorColor;
+            }
         }
     }
 
-    input {
-        border: none;
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        width: 100%;
-        outline: none;
-        font-family: $font;
-        font-size: 16px;
+    .textField_focused.textField_error {
+        box-shadow: 0px 0px 0px 1px $errorColor;
     }
 
     .infoTxt {
@@ -49,38 +82,10 @@ $font: "Roboto", sans-serif;
         left: 16px;
         top: calc(100% + 4px);
         font-size: 12px;
-        z-index: -1;
+        z-index: 0;
     }
 
-    &:hover {
-        border-color: black;
-        cursor: text;
+    .textField_error + .infoTxt {
+        color: $errorColor;
     }
-
-    &_focused,
-    &_focused:hover {
-        border-color: $primaryColor;
-        box-shadow: 0px 0px 0px 1px $primaryColor;
-
-        .label {
-            color: $primaryColor;
-        }
-    }
-
-    &_error,
-    &_error:hover {
-        border-color: $errorColor;
-
-        .label {
-            color: $errorColor;
-        }
-
-        .infoTxt {
-            color: $errorColor;
-        }
-    }
-}
-
-.textField_focused.textField_error {
-    box-shadow: 0px 0px 0px 1px $errorColor;
 }

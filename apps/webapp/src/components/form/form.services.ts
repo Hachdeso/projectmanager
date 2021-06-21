@@ -15,15 +15,11 @@ function getTextFieldsByForm(form: string): TextFieldType[] {
 }
 
 export function validateForm(form: string) {
-    console.log("validateForm");
     const textfields = getTextFieldsByForm(form);
-    console.log(textfields);
 
     let isValid = true;
 
     for (const tf of textfields) {
-        console.log(tf);
-
         if (tf.constraints) {
             if (!validateTextField(tf) && isValid) {
                 isValid = false;

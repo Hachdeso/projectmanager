@@ -1,5 +1,3 @@
-import { Switch } from "react-router-dom";
+const AuthRoutes: React.FC = () => <></>;
 
-const AuthRouter: React.FC = () => <Switch></Switch>;
-
-export default AuthRouter;
+export default AuthRoutes;

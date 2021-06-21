@@ -2,19 +2,18 @@ import "./App.scss";
 import ProgressBar from "./components/progressbar/ProgressBar";
 import AppRouter from "./router/AppRouter";
 import { BrowserRouter as Router } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import Redirect from "./components/redirect/Redirect";
+import { useGetUserQuery } from "./features/user/user.api";
 
 function App() {
+    const { data: user, isFetching, isLoading } = useGetUserQuery();
+
     return (
         <Router>
-            <>
-                <div>pog</div>
-            </>
             <div className="App">
                 <ProgressBar />
-                <AnimatePresence>
-                    <AppRouter />
-                </AnimatePresence>
+                <AppRouter />
+                <Redirect />
             </div>
         </Router>
     );

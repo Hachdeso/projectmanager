@@ -16,6 +16,7 @@ class UserRoutes {
     private initRoutes(): void {
         this.router.post("/authenticate", this.userController.authenticate);
         this.router.post("/", this.userController.createUser);
+        this.router.get("/", isUser, this.userController.getUser);
         this.router.delete("/:userId", isUser, this.userController.deleteUser);
     }
 }
