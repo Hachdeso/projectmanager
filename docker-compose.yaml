@@ -1,16 +1,16 @@
 version: "3"
 services:
     node:
-        build:
-            context: ./
+        image: node:14-alpine
+        working_dir: /usr/src/app
         tty: true
         volumes:
             - ./apps/api:/usr/src/app
         ports:
             - "8080:8080"
     react:
-        build:
-            context: ./
+        image: node:14-alpine
+        working_dir: /usr/src/app
         tty: true
         volumes:
             - ./apps/webapp:/usr/src/app
@@ -31,5 +31,3 @@ services:
         restart: on-failure
         ports:
             - "8081:8080"
-        volumes:
-            - "./adminer.css:/var/www/html/adminer.css"

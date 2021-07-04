@@ -1,39 +1,37 @@
 .App {
-  text-align: center;
+    width: 100%;
+    margin: auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+    margin-top: 16px;
+    text-align: center;
+    font-weight: normal;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
+h2 {
+    text-align: center;
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 16px;
 }
 
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.card {
+    border-radius: 4px;
+    border: 1px solid rgb(226, 226, 226);
+    background-color: white;
+    margin: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
 }
 
-.App-link {
-  color: rgb(112, 76, 182);
+.textField {
+    margin-bottom: 24px !important;
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+@media (min-width: 501px) {
+    .App {
+        width: 500px;
+    }
 }
