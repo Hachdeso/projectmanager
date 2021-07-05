@@ -6,7 +6,7 @@ const ProgressBar: React.FC = () => {
     const isFetching = useAppSelector((state) => state.progressbar.isFetching);
 
     if (isFetching) {
-        return <LinearProgress />;
+        return <LinearProgress style={{ position: "absolute", top: 0, width: "100%" }} />;
     }
 
     return null;

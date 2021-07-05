@@ -3,8 +3,12 @@ import TopBar from "../../components/topbar/TopBar";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import "./signup.scss";
 import { Button, TextField } from "@material-ui/core";
+import { useAppDispatch } from "../../app/hooks";
+import { setIsFetching } from "../../components/progressbar/progressbar.slice";
 
 const Signup: React.FC = () => {
+    const dispatch = useAppDispatch();
+
     return (
         <div className="signup">
             <TopBar icon={<ArrowBack />} title="Inscription" to="/login" />
@@ -34,7 +38,13 @@ const Signup: React.FC = () => {
                 />
 
                 <div className="buttons">
-                    <Button className="button" id="loginButton" variant="contained" color="primary">
+                    <Button
+                        className="button"
+                        id="loginButton"
+                        variant="contained"
+                        color="primary"
+                        onClick={() => dispatch(setIsFetching(true))}
+                    >
                         Inscription
                     </Button>
                 </div>
