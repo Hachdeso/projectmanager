@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import userReducer from "../features/user/user.slice";
+import progressbarReducer from "../components/progressbar/progressbar.slice";
 
 export const store = configureStore({
     reducer: {
         user: userReducer,
+        progressbar: progressbarReducer,
     },
 });
 

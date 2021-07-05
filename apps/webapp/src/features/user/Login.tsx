@@ -1,5 +1,6 @@
 import { Button, TextField } from "@material-ui/core";
 import React from "react";
+import { Link } from "react-router-dom";
 import "./login.scss";
 
 const Login: React.FC = () => {
@@ -11,7 +12,7 @@ const Login: React.FC = () => {
                 <TextField
                     required
                     className="textField"
-                    id="outlined-basic"
+                    id="loginEmail"
                     label="Email"
                     variant="outlined"
                 />
@@ -19,12 +20,14 @@ const Login: React.FC = () => {
                 <TextField
                     required
                     className="textField"
-                    id="outlined-basic"
+                    id="loginPassword"
                     label="Mot de passe"
                     variant="outlined"
                 />
                 <div className="buttons">
-                    <Button color="primary">Inscription</Button>
+                    <Link to="/signup" style={{ color: "inherit", textDecoration: "inherit" }}>
+                        <Button color="primary">Inscription</Button>
+                    </Link>
                     <Button className="button" id="loginButton" variant="contained" color="primary">
                         Connexion
                     </Button>
