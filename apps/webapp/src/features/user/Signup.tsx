@@ -5,6 +5,7 @@ import "./signup.scss";
 import { Button, TextField } from "@material-ui/core";
 import { useAppDispatch } from "../../app/hooks";
 import { setIsFetching } from "../../components/progressbar/progressbar.slice";
+import FetchButton from "../../form/buttons/FetchButton";
 
 const Signup: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -38,15 +39,12 @@ const Signup: React.FC = () => {
                 />
 
                 <div className="buttons">
-                    <Button
-                        className="button"
-                        id="loginButton"
+                    <FetchButton
+                        label="inscription"
+                        name="loginButton"
                         variant="contained"
-                        color="primary"
                         onClick={() => dispatch(setIsFetching(true))}
-                    >
-                        Inscription
-                    </Button>
+                    />
                 </div>
             </div>
         </div>

@@ -17,6 +17,7 @@ interface AppTextFieldProps {
     helperText?: string;
     constraints?: TextFieldConstraints;
     form?: string;
+    type?: "password";
 }
 
 const AppTextField: React.FC<AppTextFieldProps> = ({
@@ -27,6 +28,7 @@ const AppTextField: React.FC<AppTextFieldProps> = ({
     label,
     constraints,
     form,
+    type,
 }) => {
     const textfield = useAppSelector((state) => {
         return state.form.textfield.find((tf) => tf.name === name);
@@ -62,6 +64,7 @@ const AppTextField: React.FC<AppTextFieldProps> = ({
             required={required}
             error={!textfield.isValid}
             className="textField"
+            type={type}
             id={textfield.name}
             helperText={textfield.helperText}
             label={textfield.label}
