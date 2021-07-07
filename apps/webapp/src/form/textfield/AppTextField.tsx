@@ -10,7 +10,6 @@ import {
 } from "./textfield.slice";
 
 interface AppTextFieldProps {
-    required?: boolean;
     name: string;
     label: string;
     initialValue?: string;
@@ -21,7 +20,6 @@ interface AppTextFieldProps {
 }
 
 const AppTextField: React.FC<AppTextFieldProps> = ({
-    required,
     name,
     initialValue,
     helperText,
@@ -42,6 +40,7 @@ const AppTextField: React.FC<AppTextFieldProps> = ({
                     name,
                     value: initialValue ? initialValue : "",
                     helperText,
+                    errorText: "",
                     isValid: true,
                     label,
                     constraints,
@@ -61,12 +60,12 @@ const AppTextField: React.FC<AppTextFieldProps> = ({
 
     return (
         <TextField
-            required={required}
+            required={textfield.constraints?.required}
             error={!textfield.isValid}
             className="textField"
             type={type}
             id={textfield.name}
-            helperText={textfield.helperText}
+            helperText={textfield.isValid ? textfield.helperText : textfield.errorText}
             label={textfield.label}
             variant="outlined"
             value={textfield.value}

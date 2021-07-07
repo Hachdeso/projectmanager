@@ -3,6 +3,11 @@
     margin: auto;
 }
 
+.MuiFormHelperText-root {
+    position: absolute;
+    bottom: -22px;
+}
+
 h1 {
     margin-top: 16px;
     font-size: 24px;
@@ -29,7 +34,7 @@ h2 {
 }
 
 .textField {
-    margin-bottom: 24px !important;
+    margin-bottom: 32px !important;
 }
 
 @media (min-width: 501px) {

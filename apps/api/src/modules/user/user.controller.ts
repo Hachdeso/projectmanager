@@ -14,7 +14,8 @@ export class UserController {
             where: { email: req.body.email },
         });
 
-        if (!user) return res.status(404).json({ message: "Aucun compte avec cet email" });
+        if (!user)
+            return res.status(403).json({ message: "Nom de compte ou mot de passe incorrect" });
 
         if (bcrypt.compareSync(req.body.password, user.password)) {
             const token = jwt.sign({ username: user.email }, JWT_KEY, {
@@ -24,7 +25,7 @@ export class UserController {
 
             res.status(200).json({ user: formatUser(user), token });
         } else {
-            return res.status(400).json({ message: "Mot de passe incorrect" });
+            return res.status(403).json({ message: "Mot de passe incorrect" });
         }
     }
 

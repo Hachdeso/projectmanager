@@ -1,4 +1,18 @@
 .login {
+    h2 {
+        margin-bottom: 8px;
+    }
+
+    .errorForm {
+        height: 15px;
+        margin-bottom: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #f44336;
+        font-size: 14px;
+    }
+
     .buttons {
         display: flex;
 

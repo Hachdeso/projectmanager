@@ -11,6 +11,7 @@ export interface AppTextField {
     form?: string;
     constraints?: TextFieldConstraints;
     helperText?: string;
+    errorText: string;
     isValid: boolean;
 }
 
@@ -33,8 +34,14 @@ const textfieldSlice = createSlice({
                 1
             );
         },
+        setTextfieldErrorText(state, action: PayloadAction<{ name: string; errorText: string }>) {
+            const index = state.findIndex((tf) => tf.name === action.payload.name);
+            state[index].isValid = !action.payload.errorText;
+            state[index].errorText = action.payload.errorText;
+        },
     },
 });
 
-export const { createTextfield, editTextfieldValue, removeTextfield } = textfieldSlice.actions;
+export const { createTextfield, editTextfieldValue, removeTextfield, setTextfieldErrorText } =
+    textfieldSlice.actions;
 export default textfieldSlice.reducer;
