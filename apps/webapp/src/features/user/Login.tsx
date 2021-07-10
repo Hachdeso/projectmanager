@@ -1,40 +1,25 @@
 import { Button } from "@material-ui/core";
-import axios, { AxiosPromise, AxiosResponse } from "axios";
+import Cookies from "js-cookie";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "../../app/hooks";
-import { setIsFetching } from "../../components/progressbar/progressbar.slice";
 import FetchButton from "../../form/buttons/FetchButton";
 import { validateForm } from "../../form/form.services";
 import AppTextField from "../../form/textfield/AppTextField";
-import { getTextfieldByName } from "../../form/textfield/textfield.services";
 import "./login.scss";
+import { login } from "./user.services";
 
 const Login: React.FC = () => {
-    const dispatch = useAppDispatch();
     const [formValid, setFormValid] = useState(true);
+
+    if (Cookies.get("token")) {
+    }
 
     async function onclick() {
         if (!validateForm("login")) return;
-
-        const email = getTextfieldByName("loginEmail")?.value;
-        const password = getTextfieldByName("loginPassword")?.value;
-
-        if (!email || !password) return;
-
-        dispatch(setIsFetching(true));
         setFormValid(true);
-
-        try {
-            const response = await axios.post("http://localhost:8080/api/users/authenticate", {
-                email,
-                password,
-            });
-            console.log(response);
-            dispatch(setIsFetching(false));
-        } catch (error) {
+        const loginResult = await login();
+        if (!loginResult) {
             setFormValid(false);
-            dispatch(setIsFetching(false));
         }
     }
 

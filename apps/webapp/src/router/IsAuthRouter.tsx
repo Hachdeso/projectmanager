@@ -1,8 +1,16 @@
 import React from "react";
-import { Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
+import ProjectHome from "../features/projects/home/ProjectHome";
 
 const IsAuthRouter: React.FC = () => {
-    return <Switch></Switch>;
+    return (
+        <Switch>
+            <Route path="/projects" component={ProjectHome} />
+            <Route path="*">
+                <Redirect to="/projects" />
+            </Route>
+        </Switch>
+    );
 };
 
 export default IsAuthRouter;

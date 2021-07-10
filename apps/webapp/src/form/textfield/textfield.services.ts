@@ -25,8 +25,24 @@ export function validateTextfield(name: string) {
 
     if (textfield.constraints.required && !textfield.value) {
         errorText = "Champ obligatoire";
+    } else if (
+        textfield.constraints.email &&
+        !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(textfield.value)
+    ) {
+        errorText = "Adresse email invalide";
+    } else if (
+        textfield.constraints.minLength &&
+        textfield.value.length < textfield.constraints.minLength.value
+    ) {
+        errorText = textfield.constraints.minLength.errorText
+            ? textfield.constraints.minLength.errorText
+            : textfield.constraints.minLength.value + " minimum";
+    } else if (
+        textfield.constraints.identical &&
+        getTextfieldByName(textfield.constraints.identical.to)?.value !== textfield.value
+    ) {
+        errorText = textfield.constraints.identical.errorText;
     }
-
     store.dispatch(setTextfieldErrorText({ name, errorText }));
 
     return !errorText;

@@ -2,6 +2,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface TextFieldConstraints {
     required?: boolean;
+    email?: boolean;
+    identical?: { to: string; errorText: string };
+    minLength?: { value: number; errorText?: string };
 }
 
 export interface AppTextField {

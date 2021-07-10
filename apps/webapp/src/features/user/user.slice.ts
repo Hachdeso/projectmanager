@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../../types/User";
 
 interface UserState {
@@ -13,9 +13,16 @@ const initialState: UserState = {
 const userSlice = createSlice({
     initialState,
     name: "user",
-    reducers: {},
+    reducers: {
+        setUser(state, action: PayloadAction<User>) {
+            state.userInformations = action.payload;
+        },
+        setIsAuth(state, action: PayloadAction<boolean>) {
+            state.isAuth = action.payload;
+        },
+    },
 });
 
-export const {} = userSlice.actions;
+export const { setUser, setIsAuth } = userSlice.actions;
 
 export default userSlice.reducer;
