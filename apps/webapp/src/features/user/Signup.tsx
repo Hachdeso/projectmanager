@@ -10,6 +10,7 @@ import { validateForm } from "../../form/form.services";
 import { getTextfieldByName } from "../../form/textfield/textfield.services";
 import axios from "axios";
 import { setTextfieldErrorText } from "../../form/textfield/textfield.slice";
+import { redirectTo } from "../../components/redirect/redirect.services";
 
 const Signup: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -47,7 +48,7 @@ const Signup: React.FC = () => {
 
     return (
         <div className="signup">
-            <TopBar icon={<ArrowBack />} title="Inscription" to="/login" />
+            <TopBar icon={<ArrowBack />} title="Inscription" onClick={() => redirectTo("/login")} />
             <div className="content">
                 <AppTextField
                     label="Email"

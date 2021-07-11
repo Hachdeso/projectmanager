@@ -4,13 +4,17 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { useAppDispatch } from "../../../app/hooks";
 import { setDrawer } from "../../../components/drawer/drawer.slice";
 
-const ProjectHome: React.FC = () => {
+const ArchivesHome: React.FC = () => {
     const dispatch = useAppDispatch();
     return (
-        <div className="projecthome">
-            <TopBar title="Projets" icon={<MenuIcon />} onClick={() => dispatch(setDrawer(true))} />
+        <div className="archiveshome">
+            <TopBar
+                title="Archives"
+                icon={<MenuIcon />}
+                onClick={() => dispatch(setDrawer(true))}
+            />
         </div>
     );
 };
 
-export default ProjectHome;
+export default ArchivesHome;

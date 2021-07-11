@@ -38,3 +38,31 @@ export async function login() {
 
     return true;
 }
+
+export async function getUser(token: string) {
+    const dispatch = store.dispatch;
+    dispatch(setIsFetching(true));
+    try {
+        const response = await axios.get("http://localhost:8080/api/users/", {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const data = response.data;
+        store.dispatch(
+            setUser({
+                token,
+                email: data.user.email,
+                id: data.user.id,
+                role: data.user.role,
+            })
+        );
+        store.dispatch(setIsAuth(true));
+        dispatch(setIsFetching(false));
+        return true;
+    } catch (error) {
+        store.dispatch(setIsFetching(false));
+        Cookies.remove("token");
+        dispatch(setIsFetching(false));
+        return false;
+    }
+}

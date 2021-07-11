@@ -1,0 +1,29 @@
+.appdrawer {
+    .header {
+        margin-bottom: 16px;
+        h2 {
+            text-align: left;
+            margin: 0;
+            font-size: 18px;
+        }
+        .email {
+            color: #717171;
+            font-size: 13px;
+        }
+    }
+
+    a {
+        text-decoration: inherit;
+        color: inherit;
+    }
+
+    .MuiPaper-root {
+        padding: 8px;
+        width: 300px;
+    }
+    .Mui-selected {
+        border-radius: 4px;
+        color: #4050b6;
+        background-color: #4050b62d !important;
+    }
+}

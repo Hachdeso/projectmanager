@@ -1,18 +1,28 @@
 import { Button } from "@material-ui/core";
 import Cookies from "js-cookie";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import FetchButton from "../../form/buttons/FetchButton";
 import { validateForm } from "../../form/form.services";
 import AppTextField from "../../form/textfield/AppTextField";
 import "./login.scss";
-import { login } from "./user.services";
+import { getUser, login } from "./user.services";
 
 const Login: React.FC = () => {
     const [formValid, setFormValid] = useState(true);
+    const token = Cookies.get("token");
 
-    if (Cookies.get("token")) {
-    }
+    useEffect(() => {
+        async function wrapper() {
+            if (token) {
+                setFormValid(true);
+                const result = await getUser(token);
+                if (!result) setFormValid(false);
+            }
+        }
+        wrapper();
+    }, [token]);
 
     async function onclick() {
         if (!validateForm("login")) return;

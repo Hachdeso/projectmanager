@@ -1,22 +1,24 @@
 import { IconButton } from "@material-ui/core";
 import React from "react";
-import { Link } from "react-router-dom";
 import "./topbar.scss";
 
 interface TopBarProps {
     icon: any;
     title: string;
-    to: string;
+    onClick: any;
 }
 
-const TopBar: React.FC<TopBarProps> = ({ icon, title, to }) => {
+const TopBar: React.FC<TopBarProps> = ({ icon, title, onClick }) => {
     return (
         <div className="topbar">
-            <Link to={to}>
-                <IconButton aria-label="retour" size="small" style={{ color: "black" }}>
-                    {icon}
-                </IconButton>
-            </Link>
+            <IconButton
+                aria-label="retour"
+                size="small"
+                style={{ color: "black" }}
+                onClick={onClick}
+            >
+                {icon}
+            </IconButton>
             <h1 className="title">{title}</h1>
         </div>
     );
